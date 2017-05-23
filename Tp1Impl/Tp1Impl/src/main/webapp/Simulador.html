@@ -1,0 +1,73 @@
+<html>
+<head>
+	<title>Simulador</title>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/Simulador.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/Simulador.css" />
+</head>
+<body>
+	<div id="contenedor" class="contenedor">
+		<div class="titulo">Simulaci&oacute;n</div>
+		<div id="pestanas">
+			<ul id=lista>
+				<li id="pestanaSimular"><a>Simular</a></li>
+				<li id="pestanaGrabar"><a>Ingresar valores</a></li>
+			</ul>
+		</div>
+		<br/>
+		<br/>
+		<br/>
+		<div id="contenidopestanas">
+			<div id="simularDiv">
+				<table  style="width: 100%" id=tablaPestana1>
+					<tr>
+						<td class="textRight"><label for="tipo">Tipo</label> </td> <td class="textLeft"> <select id="tipo">
+								<option value="default">Elija uno</option>
+								<option value="dni">DNI</option>
+						</select> </td>
+						<td class="textRight"><label for="numero">N&uacute;mero</label> </td> <td class="textLeft"><input type="text" id="numero" /></td>
+						<td></td>
+					</tr>
+				</table>
+				<br/>
+				<br/>
+				<div id="simularBtnDiv" class="botonera">
+					<button id="simularBtn">Simular</button>
+				</div>
+			</div>
+			<div id="grabarDiv">
+				<table style="width: 100%" id=tablaPestana2>
+					<tr>
+						<td class="textRight"><label for="producto">Producto</label> </td> <td class="textLeft"> <select id="producto">
+								<option value="default">Elija uno</option>
+								<option value="SuperCuenta 1">SuperCuenta 1</option>
+						</select></td>
+						<td class="textRight"> <label for="subproducto">Subproducto</label> </td> <td class="textLeft"><select id="subproducto">
+								<option value="default">Elija uno</option>
+								<option value="Mercado Abierto">Mercado Abierto</option>
+						</select></td>
+						<td class="textRight"> <label for="nrocuenta">N&uacute;mero de Cuenta</label> </td> <td class="textLeft"> <input type="text" id="nrocuenta" /></td>
+					</tr>
+					<tr>
+						<td class="textRight"><label for="sucursal">Sucursal</label> </td> <td class="textLeft"> <select id="sucursal">
+								<option value="default">Elija uno</option>
+								<option value="sucursal1">Sucursal 1</option>
+						</select></td>
+						<td class="textRight"><label for="estado">Estado</label> </td> <td class="textLeft"> <select id="estado">
+								<option value="default">Elija uno</option>
+								<option value="estado1">Estado 1</option>
+						</select></td>
+						<td class="textRight"><label for="nroSolicitud">N&uacute;mero de
+								Solicitud</label> </td> <td class="textLeft"> <input type="text" id="nroSolicitud" /></td>
+					</tr>
+				</table>
+				<br/>
+				<br/>
+				<div id="ingresarValoresBtnDiv" class="botonera">
+					<button id="ingresarValoresBtn">Grabar valores</button>
+				</div>
+			</div>
+		</div>	
+	</div>
+</body>
+</html>

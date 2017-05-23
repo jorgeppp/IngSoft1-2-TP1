@@ -1,0 +1,76 @@
+body {
+    background: #E8EAEC;    
+    font-family: arial;
+}
+
+.contenedor{
+    width: 1080px;
+    margin: 45px;
+    background: white;
+    color: black;
+    border-radius: 10px;
+}
+
+.contenedor .titulo{
+    font-size: 3.5ex;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    padding: 20px 15px 50px 50px;
+}
+
+#pestanas {
+    float: top;
+    font-size: 2.5ex;
+    background: #E8EAEC;
+    height: 51px;
+}
+
+
+#pestanas ul{
+    margin-left: -40px;    
+    height: 45px;
+
+}
+
+#pestanas li{
+    list-style-type: none;
+    float: left;
+    text-align: left;
+    margin: 0px 2px -2px -0px;
+    background: #E8EAEC;
+    border-bottom: #428bca;
+    padding: 26px 40px 1px 25px;
+    border-top: 
+}
+
+#pestanas a:hover{
+    color: red;
+}
+
+
+.botonera{
+    height: 70px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 462px;
+    padding-right: 74px;
+}
+
+.textLeft{
+	text-align: left;
+}
+
+.textRight{
+	text-align: right;
+	padding-left :20px;
+	
+}
+
+th, td {
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+
+

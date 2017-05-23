@@ -1,0 +1,8 @@
+# eclipse
+Tp1Impl/Tp1Impl/.settings/
+Tp1Impl/Tp1Impl/target/
+Tp1Impl/Tp1Impl/.classpath
+Tp1Impl/Tp1Impl/.project
+
+# Bibliotecas
+*.jar

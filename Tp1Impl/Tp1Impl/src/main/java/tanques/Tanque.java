@@ -1,13 +1,16 @@
 package tanques;
 
-public abstract class Tanque {
+import simulacion.Construible;
 
-	protected int diasDeConstruccionActual;
-	protected int diasDeConstruccionTotal;
-	protected double costoConstruccion;
+public abstract class Tanque extends Construible{
+	
+	public Tanque(String model, int diasDeConstruccionTotal, double costoConstruccion, double volumenTotal) {
+		super(model, diasDeConstruccionTotal, costoConstruccion);
+		this.volumenTotal = volumenTotal;
+	}
+
 	protected double volumenTotal;
-	protected double volumenOcupadoActual;
-	protected String modelo;
+	protected double volumenOcupadoActual = 0;
 	
 	public double getVolumenTotal() {
 		return volumenTotal;
@@ -16,19 +19,12 @@ public abstract class Tanque {
 		return volumenOcupadoActual;
 	}
 	
-	public double getCostoConstruccion() {
-		return costoConstruccion;
-	}
-	
 	public void extraerVol(double vol) {
 		this.volumenOcupadoActual -= vol;
 	}
 	
 	public void llenar(double vol) {
 		volumenOcupadoActual += vol;
-	}
-	public String getModelo() {
-		return modelo;
 	}
 
 	

@@ -1,5 +1,8 @@
 package simulacion;
 
-public enum CriteriosConstruccionTanques {
+public abstract class CriteriosConstruccionTanques {
 
+	public abstract void construirTanquesNuevos(Simulador sim);
+
+	
 }

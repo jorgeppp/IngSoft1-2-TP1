@@ -15,6 +15,65 @@ $(document).ready(function () {
         $("#simularDiv").hide();
         $("#grabarDiv").show();
     });
+    
+    $("#agregarRig").on("click",function () { 
+		$("#tablaRigs").append(	
+    	'<tr><td class="textRight">Rig:</td>' 
+		+'<td class="textRight"> <label for="pexcava">Poder excavaci&oacute;n d&iacute;a</label> </td> <td class="textLeft"> <input size="1" type="text" class="pExcavaRig" id="pexcava" /></td>'
+		+'<td class="textRight"> <label for="cAlquilerDia">Costo alquiler d&iacute;a</label> </td> <td class="textLeft"> <input size="1" type="text" id="cAlquilerDia" /></td>'
+		+'<td class="textRight"> <label for="minDiasPag">M&iacute;nima cantidad dias pagar</label> </td> <td class="textLeft"> <input size="1" type="text" id="minDiasPag" /></td>'
+		+'<td class="textRight"> <label for="consumCombDia">Consumo combustible d&iacute;a</label> </td> <td class="textLeft"> <input size="1" type="text" id="consumCombDia" /></td>'
+		+'<td class="textRight"> </td>'
+	+'</tr>');
+    });
+    
+    $("#agregarPlanta").on("click",function () { 
+		$("#tablaModelosPlantas").append(	
+				'<tr>'
+				+ '<td class="textRight"> <label for="modelPlant">Modelo Planta</label> </td> <td class="textLeft"> <input size="1" type="text" id="modelPlant" class="ClassmodelPlant"/></td>'
+				+ '<td class="textRight"> <label for="diasConstPlant">D&iacute;as construcci&oacute;n</label> </td> <td class="textLeft"> <input size="1" type="text" id="diasConstPlant" class="ClassdiasConstPlant"/></td>'
+				+ '<td class="textRight"> <label for="costoConstPlant">Costo construci&oacute;n</label> </td> <td class="textLeft"> <input size="1" type="text" id="costoConstPlant" class="ClasscostoConstPlant"/></td>'
+				+ '<td class="textRight"> <label for="poderProces">Poder procesamiento d&iacute;a</label> </td> <td class="textLeft"> <input size="1" type="text" id="poderProces" class="ClasscantPlant"/></td>'
+				+ '<td class="textRight"> <label for="cantPlant">Cantidad inicial</label> </td> <td class="textLeft"> <input size="1" type="text" id="poderProces" class="ClasspoderProces"/></td>'
+				+ '<td class="textRight"></td>'
+			 +'</tr>');
+    });
+    
+    $("#agregarTanque").on("click",function () { 
+		$("#modelTanq").append(	
+			
+			'	<tr>'
+			+'	<td class="textRight"> Modelo Tanque </td> <td class="textLeft"> <input size="1" type="text" id="modelPlant" class="ClassmodelTanq"/></td>'
+			+'	<td class="textRight"> D&iacute;as construcci&oacute;n </td> <td class="textLeft"> <input size="1" type="text" id="diasConstTanq" class="ClassdiasConstTanq"/></td>'
+			+'	<td class="textRight"> Costo construci&oacute;n </td> <td class="textLeft"> <input size="1" type="text" id="costoConstTanq" class="ClasscostoConstTanq"/></td>'
+			+'	<td class="textRight"> Volumen total </td> <td class="textLeft"> <input size="1" type="text" id="poderProces" class="ClassvolTot"/></td>'
+			+'	<td class="textRight"> Cantidad inicial </td> <td class="textLeft"> <input size="1" type="text" id="cantTanq" class="ClasscantTanq"/></td>'
+			+'	<td class="textRight"> Tipo tanque </td> <td class="textLeft"> <select id="tipoTanq" class="ClasstipoTanq">'
+			+'			<option value="agua">Agua</option>'
+			+'			<option value="gas">Gas</option>'
+			+'	</select></td>'
+			+'<td class="textRight" ></td>'
+			+'</tr>')
+    });
+    
+    $("#agregarParcela").on("click",function () { 
+		$("#tablaParcelas").append(	
+			
+				'<tr>'
+				+'<td class="textRight">Parcela :</td>'
+				+'<td class="textRight"> <label for="profundidadTotal">Profundidad total</label> </td> <td class="textLeft"> <input size="1" type="text" id="profundidadTotal" class="ClassprofundidadTotal"/></td>'
+				+'<td class="textRight"> <label for="presionInicial">Presi&oacute;n inicial</label> </td> <td class="textLeft"> <input size="1" type="text" id="presionInicial" class="ClasspresionInicial"/></td>'
+				+'<td class="textRight"> <label for="tipoTerreno">Tipo terreno</label> </td> <td class="textLeft"> <select id="tipoTerreno" class="ClasstipoTerreno">'
+				+'		<option value="arcilloso">ARCILLOSO</option>'
+				+'		<option value="normal">NORMAL</option>'
+				+'		<option value="rocoso">ROCOSO</option>'
+				+'</select></td>'
+				+'<td class="textRight"></td>'
+			+'</tr>')
+    });
+    
+    
+     
 
     $("#simularBtn").click(function () {    	
     	if(sessionStorage.getItem('simuladorLibre') == "false"){
@@ -22,46 +81,92 @@ $(document).ready(function () {
     	}else{
 	    	sessionStorage.setItem('simuladorLibre', false);
 	    	
-//	        var nombre;
-//	        var apellido;
-//	        var razonSocial;
-//	        var tipo;
-//	        var numero;
-//	        var producto;
-//	        var subproducto;
-//	        var nrocuenta;
-//	        var fechaDesde;
-//	        var fechaHasta;
-//	        var sucursal;
-//	        var estado;
-//	        var nroSolicitud;
-//	        var evidencia;
-//	        var tipoDocumental;
-//	        var subtipoDocumental;
-//	
-//	        nombre = $("#nom").val();
-//	        apellido = $("#ape").val();
-//	        razonSocial = $("#razonSoc").val();
-//	        tipo = $("#tipo").val();
-//	        numero = $("#numero").val();
-//	        producto = $("#producto").val();
-//	        subproducto = $("#subproducto").val();
-//	        nrocuenta = $("#nrocuenta").val();
-//	        fechaDesde = $("#fechaDesde").val();
-//	        fechaHasta = $("#fechaHasta").val();
-//	        sucursal = $("#sucursal").val();
-//	        estado = $("#estado").val();
-//	        nroSolicitud = $("#nroSolicitud").val();
-//	        evidencia = $("#evidencia").val();
-//	        tipoDocumental = $("#tipoDocumental").val();
-//	        subtipoDocumental = $("#subtipoDocumental").val();
-//	              
+	        var alpha1 = $("#alpha1").val();
+	        var alpha2 = $("#alpha2").val();
+	        var cantPozos = $("#cantPozos").val();
+	        var cantMaxRigs = $("#cantMaxRigs").val();
+	        var volMaxReiny = $("#volMaxReiny").val();
+	        var presCrit = $("#presCrit").val();
+	        var dilCrit = $("#dilCrit").val();
+	        var diasMaxSim = $("#diasMaxSim").val();
+	        
+	        var pPetr = $("#pPetr").val();
+	        var pGas = $("#pGas").val();
+	        var pAgua = $("#pAgua").val();
+	        var pcomb = $("#pcomb").val();
+	        
+	        var pExcavaRigResult = [];   
+	        var cAlquilerRigResult  = [];     
+	        var minDiasRigResult  = [];
+	        var consumRigResult  = [];
+	        
+	        var pExcavaRigDat = $(".pExcavaRig")
+	        var cAlquilerRigDat = $(".cAlquilerRig")
+	        var minDiasRigDat = $(".minDiasRig")
+	        var consumRigDat = $(".consumRig")
+	        
+	        var cantRigs = pExcavaRigDat.length;
+	        for(var ind =0; ind < cantRigs;ind++){
+	        	pExcavaRigResult[ind] = pExcavaRigDat[ind].value;
+	        	cAlquilerRigResult[ind] = cAlquilerRigDat[ind].value;
+	        	minDiasRigResult[ind] = minDiasRigDat[ind].value;
+	        	consumRigResult[ind] = consumRigDat[ind].value;
+	        }
+	        
+	        var ClassmodelPlantResult = [];   
+	        var ClassdiasConstPlantResult  = [];     
+	        var ClasscostoConstPlantResult  = [];
+	        var ClasscantPlantResult  = [];
+	        var ClasspoderProcesResult  = [];
+	        
+	        var ClassmodelPlantDat = $(".ClassmodelPlant")
+	        var ClassdiasConstPlantDat = $(".ClassdiasConstPlant")
+	        var ClasscostoConstPlantDat = $(".ClasscostoConstPlant")
+	        var ClasscantPlantDat = $(".ClasscantPlant")
+	        var ClasspoderProcesResultDat = $(".ClasspoderProcesResult")
+ 
+	        var cantPlantas = ClassmodelPlantDat.length;
+	        for(var ind =0; ind < cantPlantas;ind++){
+	        	ClassmodelPlantResult[ind] = ClassmodelPlantDat[ind].value;
+	        	ClassdiasConstPlantResult[ind] = ClassdiasConstPlantDat[ind].value;
+	        	ClasscostoConstPlantResult[ind] = ClasscostoConstPlantDat[ind].value;
+	        	ClasscantPlantResult[ind] = ClasscantPlantDat[ind].value;
+	        	ClasspoderProcesResult[ind] = ClasspoderProcesDat[ind].value;
+	        }
+	        
+	        var ClassmodelTanqResult = [];   
+	        var ClassdiasConstTanqResult  = [];     
+	        var ClasscostoConstTanqResult  = [];
+	        var ClassvolTotResult  = [];
+	        var ClasscantTanqResult  = [];
+	        var ClasstipoTanqResult  = [];
+	        
+	        var ClassmodelTanqDat = $(".ClassmodelTanq")
+	        var ClassdiasConstTanqDat = $(".ClassdiasConstTanq")
+	        var ClasscostoConstTanqDat = $(".ClasscostoConstTanq")
+	        var ClassvolTotDat = $(".ClassvolTot")
+	        var ClasscantTanqDat = $(".ClasscantTanq")
+	        var ClasstipoTanqDat = $(".ClasstipoTanq")
+ 
+	        var cantTanq = ClassmodelTanqDat.length;
+	        for(var ind =0; ind < cantTanq;ind++){
+	        	ClassmodelTanqResult[ind] = ClassmodelTanqDat[ind].value;
+	        	ClassdiasConstTanqResult[ind] = ClassdiasConstTanqDat[ind].value;
+	        	ClasscostoConstTanqResult[ind] = ClasscostoConstTanqDat[ind].value;
+	        	ClassvolTotResult[ind] = ClassvolTotDat[ind].value;
+	        	ClasscantTanqResult[ind] = ClasscantTanqDat[ind].value;
+	        	ClasstipoTanqResult[ind] = ClasstipoTanqDat[ind].value;
+	        }
+	        
+	        
 	        $.ajax({
 	            type: 'POST',
 	            url: 'home/Simular',
 	//     dataType: 'json',
-	//          data: {pestana: pestana, nombre: nombre, apellido: apellido, razonSocial: razonSocial, tipo: tipo, numero: numero, producto: producto, subproducto: subproducto, nrocuenta: nrocuenta, fechaDesde: fechaDesde, fechaHasta: fechaHasta, sucursal: sucursal, estado: estado, nroSolicitud: nroSolicitud, evidencia: evidencia, tipoDocumental: tipoDocumental, subtipoDocumental: subtipoDocumental},
-	            data : {},
+	            data : {alpha1: alpha1, alpha2: alpha2, cantPozos: cantPozos, cantMaxRigs: cantMaxRigs, volMaxReiny: volMaxReiny, presCrit: presCrit,diasMaxSim : diasMaxSim, pExcavaRigResult : pExcavaRigResult,cAlquilerRigResult : cAlquilerRigResult, minDiasRigResult : minDiasRigResult, consumRigResult : consumRigResult,
+	            	ClassmodelPlantResult:ClassmodelPlantResult,ClassdiasConstPlantResult:ClassdiasConstPlantResult,ClasscostoConstPlantResult:ClasscostoConstPlantResult,ClasscantPlantResult:ClasscantPlantResult,ClasspoderProcesResult:ClasspoderProcesResult,
+	            	ClassmodelTanqResult: ClassmodelTanqResult,ClassdiasConstTanqResult :ClassdiasConstTanqResult,ClasscostoConstTanqResult:ClasscostoConstTanqResult,ClassvolTotResult:ClassvolTotResult,ClasscantTanqResult:ClasscantTanqResult,ClasstipoTanqResult:ClasstipoTanqResult,
+	            	pPetr:pPetr,pGas:pGas,pAgua:pAgua,pcomb:pcomb},
 	            async: true,
 	            success: function (response) {
 	                console.log(response);
@@ -94,46 +199,33 @@ $(document).ready(function () {
     	}else{
 	    	sessionStorage.setItem('almacenandorLibre', false);
 	    	
-//	        var nombre;
-//	        var apellido;
-//	        var razonSocial;
-//	        var tipo;
-//	        var numero;
-//	        var producto;
-//	        var subproducto;
-//	        var nrocuenta;
-//	        var fechaDesde;
-//	        var fechaHasta;
-//	        var sucursal;
-//	        var estado;
-//	        var nroSolicitud;
-//	        var evidencia;
-//	        var tipoDocumental;
-//	        var subtipoDocumental;
-//	
-//	        nombre = $("#nom").val();
-//	        apellido = $("#ape").val();
-//	        razonSocial = $("#razonSoc").val();
-//	        tipo = $("#tipo").val();
-//	        numero = $("#numero").val();
-	        producto = $("#producto").val();
-//	        subproducto = $("#subproducto").val();
-	        nrocuenta = $("#nrocuenta").val();
-//	        fechaDesde = $("#fechaDesde").val();
-//	        fechaHasta = $("#fechaHasta").val();
-//	        sucursal = $("#sucursal").val();
-//	        estado = $("#estado").val();
-//	        nroSolicitud = $("#nroSolicitud").val();
-//	        evidencia = $("#evidencia").val();
-//	        tipoDocumental = $("#tipoDocumental").val();
-//	        subtipoDocumental = $("#subtipoDocumental").val();
+
+	        var volTot = $("#volTot").val();
+	        var porcPetr = $("#porcPetr").val();
+	        var porcGas = $("#porcGas").val();
+	        var porcAgua = $("#porcAgua").val();
+	        
+	        var profundidadTotalResult = [];   
+	        var presionInicialResult  = [];     
+	        var tipoTerrenoResult  = [];
+	        
+	        var profundidadTotalDat = $(".ClassprofundidadTotal")
+	        var presionInicialDat = $(".ClasspresionInicial")
+	        var tipoTerrenoDat = $(".ClasstipoTerreno")
+	        
+	        var cantParcelas = profundidadTotalDat.length;
+	        for(var ind =0; ind < cantParcelas;ind++){
+	        	profundidadTotalResult[ind] = profundidadTotalDat[ind].value;
+	        	presionInicialResult[ind] = presionInicialDat[ind].value;
+	        	tipoTerrenoResult[ind] = tipoTerrenoDat[ind].value;
+	        }
+
 //	              
 	        $.ajax({
 	            type: 'POST',
 	            url: 'home/Grabar',
 	//     dataType: 'json',
-	//          data: {pestana: pestana, nombre: nombre, apellido: apellido, razonSocial: razonSocial, tipo: tipo, numero: numero, producto: producto, subproducto: subproducto, nrocuenta: nrocuenta, fechaDesde: fechaDesde, fechaHasta: fechaHasta, sucursal: sucursal, estado: estado, nroSolicitud: nroSolicitud, evidencia: evidencia, tipoDocumental: tipoDocumental, subtipoDocumental: subtipoDocumental},
-	            data : {producto : producto, nrocuenta : nrocuenta},
+	            data : {volTot : volTot, porcPetr : porcPetr, porcGas : porcGas, porcAgua : porcAgua,profundidadTotalResult:profundidadTotalResult, presionInicialResult:presionInicialResult,tipoTerrenoResult:tipoTerrenoResult},
 	            async: true,
 	            success: function (response) {
 	                console.log(response);

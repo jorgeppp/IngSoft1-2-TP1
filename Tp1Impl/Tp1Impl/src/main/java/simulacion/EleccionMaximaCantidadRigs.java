@@ -6,7 +6,7 @@ public class EleccionMaximaCantidadRigs extends CriteriosConstruccionPozos {
 	@Override
 	public void construirPozosNuevos(Simulador sim) {//la funcion se ejecuta cada dia
 		for(int ind=0; ind <sim.getCantMaxRIGSSimultaneo(); ind++){
-			if( sim.getCantPozosConstruccion() == sim.getCantPozosARealizar()){
+			if( sim.getYacimientoSimular().getCantPozosConstruccion() == sim.getCantPozosARealizar()){
 				break;
 			}
 			Parcela parcelaPozoNuevo = sim.getEquipoIngenieria().getCriterioEleccionParcela().dameParcela(sim);
@@ -22,8 +22,8 @@ public class EleccionMaximaCantidadRigs extends CriteriosConstruccionPozos {
 			}	
 			parcelaPozoNuevo.getPozo().setRigCabando(rigPozo);
 			parcelaPozoNuevo.setContruirPozo();
-			parcelaPozoNuevo.addPlanta(EstadoFinancieroYacimiento.getPlantasFactory().obtenerPlantaRandom());
-			sim.incrementarCantPozosConstruccion();
+			parcelaPozoNuevo.addPlanta(sim.getPlantasFactory().obtenerPlantaRandom());
+			sim.getYacimientoSimular().incrementarCantPozosConstruidos();
 		}
 	}
 }

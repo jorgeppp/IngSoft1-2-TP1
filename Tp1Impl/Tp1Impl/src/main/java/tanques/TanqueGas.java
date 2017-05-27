@@ -16,5 +16,9 @@ public class TanqueGas extends Tanque {
 		double ganancia = EstadoFinancieroYacimiento.getPrecioVentaGas() * cantVender;
 		EstadoFinancieroYacimiento.incrementarGanancia(ganancia);
 	}
+	public TanqueGas(String model, int diasDeConstruccionTotal, double costoConstruccion, double volumenTotal, EstadoFinancieroYacimiento estadFinanc) {
+		super(model, diasDeConstruccionTotal, costoConstruccion, volumenTotal);
+		estadoFinancieroYacimiento = estadFinanc;
+	}
 
 }

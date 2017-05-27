@@ -7,7 +7,7 @@ public class EleccionRigAzar extends CriteriosEleccionRig {
 
 	@Override
 	public Rig alquilarRig(Simulador sim) {
-		List<Rig> rigsDisp = EstadoFinancieroYacimiento.getListaRigsDisponibles();
+		List<Rig> rigsDisp = sim.getListaRigsDisponibles();
 
 		
 		if(!rigsDisp.isEmpty()){

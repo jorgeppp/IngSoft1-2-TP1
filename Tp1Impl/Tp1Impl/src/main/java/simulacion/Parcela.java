@@ -47,10 +47,11 @@ public class Parcela {
 		plantasSeparadorasParcela.add(pl);
 	}
 
-	public Parcela(TipoDeTerreno tipoTerreno, Pozo pozo) {
+	public Parcela(TipoDeTerreno tipoTerreno, Pozo pozo,PlantaSeparadora plantSep ) {
 		this.id= count++;
 		this.tipoTerreno = tipoTerreno;
 		this.pozo = pozo;
+		plantasSeparadorasParcela.add(plantSep);
 	}
 	
 

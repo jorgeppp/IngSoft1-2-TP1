@@ -6,15 +6,26 @@ import tanques.TanquesFactory;
 
 public class EstadoFinancieroYacimiento {
 	
-	private static double gananciaTotal;
+	private static double gananciaTotal =0;
 	
 	private static double precioVentaPetroleo;
 	private static double precioVentaGas;
 	private static double precioCompraAgua;
 	private static double costoCombustibleRigs;
-	private static PlantasFactory plantasFactory;
-	private static TanquesFactory tanquesFactory;
-	private static List<Rig> listaRigsDisponibles;
+
+	
+	public static void setPrecioVentaPetroleo(double precioVentaPetroleo) {
+		EstadoFinancieroYacimiento.precioVentaPetroleo = precioVentaPetroleo;
+	}
+	public static void setPrecioVentaGas(double precioVentaGas) {
+		EstadoFinancieroYacimiento.precioVentaGas = precioVentaGas;
+	}
+	public static void setPrecioCompraAgua(double precioCompraAgua) {
+		EstadoFinancieroYacimiento.precioCompraAgua = precioCompraAgua;
+	}
+	public static void setCostoCombustibleRigs(double costoCombustibleRigs) {
+		EstadoFinancieroYacimiento.costoCombustibleRigs = costoCombustibleRigs;
+	}
 
 
 	
@@ -30,12 +41,7 @@ public class EstadoFinancieroYacimiento {
 	public static double getCostoCombustibleRigs() {
 		return costoCombustibleRigs;
 	}
-	public static PlantasFactory getPlantasFactory() {
-		return plantasFactory;
-	}
-	public static TanquesFactory getTanquesFactory() {
-		return tanquesFactory;
-	}
+
 	public static double getGananciaTotal() {
 		return gananciaTotal;
 	}
@@ -48,9 +54,6 @@ public class EstadoFinancieroYacimiento {
 		gananciaTotal -= value;
 	}
 	
-	public static List<Rig> getListaRigsDisponibles() {
-		return listaRigsDisponibles;
-	}
 	
 	
 

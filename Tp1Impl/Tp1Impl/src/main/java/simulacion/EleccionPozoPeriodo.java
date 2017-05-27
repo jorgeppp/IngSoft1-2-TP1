@@ -6,7 +6,7 @@ public class EleccionPozoPeriodo extends CriteriosConstruccionPozos {
 	@Override
 	public void construirPozosNuevos(Simulador sim) {//la funcion se ejecuta cada dia	
 		if(sim.getDia() % periodoConstuccion == 0){// construir un pozo
-			if( sim.getCantPozosConstruccion() == sim.getCantPozosARealizar()){
+			if( sim.getYacimientoSimular().getCantPozosConstruccion() == sim.getCantPozosARealizar()){
 				return;
 			}
 			Parcela parcelaPozoNuevo = sim.getEquipoIngenieria().getCriterioEleccionParcela().dameParcela(sim);
@@ -23,8 +23,8 @@ public class EleccionPozoPeriodo extends CriteriosConstruccionPozos {
 			}	
 			parcelaPozoNuevo.getPozo().setRigCabando(rigPozo);
 			parcelaPozoNuevo.setContruirPozo();
-			parcelaPozoNuevo.addPlanta(EstadoFinancieroYacimiento.getPlantasFactory().obtenerPlantaRandom());
-			sim.incrementarCantPozosConstruccion();
+			parcelaPozoNuevo.addPlanta(sim.getPlantasFactory().obtenerPlantaRandom());
+			sim.getYacimientoSimular().incrementarCantPozosConstruidos();
 		}
 	}
 }

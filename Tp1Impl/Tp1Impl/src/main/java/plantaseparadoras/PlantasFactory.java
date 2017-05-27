@@ -5,6 +5,7 @@ import java.util.Random;
 public class PlantasFactory {
 	
 	private List<PlantaSeparadora> listPlant;
+	
 	public PlantaSeparadora obtenerPlantaRandom(){
 		Random aleat =  new Random();
 		return listPlant.get(aleat.nextInt(listPlant.size()));

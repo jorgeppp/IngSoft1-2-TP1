@@ -25,11 +25,11 @@ public class EleccionRigPoderExcavacion extends CriteriosEleccionRig{
 	@Override
 	public Rig alquilarRig(Simulador sim){
 		if(!seOrdeno){
-			Collections.sort(EstadoFinancieroYacimiento.getListaRigsDisponibles(), new ComparadorRigs());
+			Collections.sort(sim.getListaRigsDisponibles(), new ComparadorRigs());
 			seOrdeno =true;
 		}
 		
-		List<Rig> rigsDisp = EstadoFinancieroYacimiento.getListaRigsDisponibles(); 
+		List<Rig> rigsDisp = sim.getListaRigsDisponibles(); 
 
 		if(!rigsDisp.isEmpty()){
 			return rigsDisp.remove(0);

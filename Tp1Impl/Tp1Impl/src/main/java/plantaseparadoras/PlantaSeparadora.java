@@ -1,27 +1,18 @@
 package plantaseparadoras;
 
-public class PlantaSeparadora{
-	
-	
-	private String model;
-	private int diasDeConstruccionActual;
-	private int diasDeConstruccionTotal;
-	private double costoConstruccion;
+import simulacion.Construible;
+
+public class PlantaSeparadora extends Construible{
+		
+
 	private double poderProcesamientoDia;
-	private double cantidadProcesamientoRestante;
+	private double cantidadProcesamientoRestante = poderProcesamientoDia;
 	
-	public String getModel() {
-		return model;
+	public PlantaSeparadora(String model, int diasDeConstruccionTotal, double costoConstruccion, double poderProcesamientoDia) {
+		super(model, diasDeConstruccionTotal, costoConstruccion);
+		this.poderProcesamientoDia = poderProcesamientoDia;
 	}
-	public int getDiasDeConstruccionActual() {
-		return diasDeConstruccionActual;
-	}
-	public int getDiasDeConstruccionTotal() {
-		return diasDeConstruccionTotal;
-	}
-	public double getCostoConstruccion() {
-		return costoConstruccion;
-	}
+	
 	public double getPoderProcesamientoDia() {
 		return poderProcesamientoDia;
 	}
@@ -35,15 +26,6 @@ public class PlantaSeparadora{
 		this.cantidadProcesamientoRestante -= cantidadProcesamiento;
 	}
 	
-	public void construirDia() {
-		this.diasDeConstruccionActual++;
-	}
-	
-	
-	
-	PlantaSeparadora(){
-		
-	}
 
 
 }

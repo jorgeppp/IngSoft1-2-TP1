@@ -4,27 +4,42 @@ import java.util.Iterator;
 import java.util.List;
 
 import plantaseparadoras.PlantaSeparadora;
+import plantaseparadoras.PlantasFactory;
 import tanques.*;
 
 public class Simulador {
 	//datos simulacion
-	private double alpha1 = 3;
+	private double alpha1;
 	private double alpha2;
 	private int cantPozosARealizar;
-	private int cantPozosConstruccion;
 	private int cantMaxRIGSSimultaneo;
 	private double volMaxReinyectarDia;
 	private double presionCritica;
 	private int dilucionCritica;
 	private int diasMaximoSimulacion;
-	private String loggeo = "";
-	
-	EstadoFinancieroYacimiento estadoFinanciero;
-	EquipoIngenieria equipoIngenieria;
-	private int dia = 0;
 	
 	private Yacimiento yacimientoSimular;
+
+	private EstadoFinancieroYacimiento estadoFinanciero;
+	private EquipoIngenieria equipoIngenieria;
 	
+	private static PlantasFactory plantasFactory;
+	private static TanquesFactory tanquesFactory;
+	private static List<Rig> listaRigsDisponibles;
+	
+	private int dia = 0;
+	private String loggeo = "";
+
+	
+	public PlantasFactory getPlantasFactory() {
+		return plantasFactory;
+	}
+	public TanquesFactory getTanquesFactory() {
+		return tanquesFactory;
+	}
+	public List<Rig> getListaRigsDisponibles() {
+		return listaRigsDisponibles;
+	}
 	public int getDiasMaximoSimulacion() {
 		return diasMaximoSimulacion;
 	}
@@ -41,17 +56,7 @@ public class Simulador {
 	public int getDilucionCritica() {
 		return dilucionCritica;
 	}
-	
-	public void incrementarCantPozosConstruccion() {
-		cantPozosConstruccion++;
-	}
-	
-	
-	public int getCantPozosConstruccion() {
-		return cantPozosConstruccion;
-	}
 
-	
 	public EquipoIngenieria getEquipoIngenieria() {
 		return equipoIngenieria;
 	}
@@ -182,7 +187,9 @@ public class Simulador {
 			//costruir pozos
 			for(Parcela parc : yacimientoSimular.getParcelas()){
 				if(parc.isSeConstruyePozo()){
-					parc.getPozo().cabarDia();
+					if(parc.getPozo().cabarDia()){
+						yacimientoSimular.incrementarCantPozosConstuidos();
+					}
 				}
 			}		
 			equipoIngenieria.getCriterioConstruccionPozos().construirPozosNuevos(this);
@@ -200,7 +207,28 @@ public class Simulador {
 			equipoIngenieria.getCriterioConstruccionPlantas().construirPlantasNuevas(this);
 			
 			
-			//construir Tanques
+			//construir Tanques	
+			Iterator<TanqueAgua> itTanqAgua = yacimientoSimular.getTanquesAguaConstruccion().iterator();
+			while(itTanqAgua.hasNext()){
+				TanqueAgua tanqAguaAct = itTanqAgua.next();
+				tanqAguaAct.construirDia();
+				if(tanqAguaAct.getDiasDeConstruccionActual() == tanqAguaAct.getDiasDeConstruccionTotal()){
+					yacimientoSimular.getTanquesAguaConstruccion().add(tanqAguaAct);
+					itTanqAgua.remove();
+				}
+			}	
+			Iterator<TanqueGas> itTanqGas = yacimientoSimular.getTanquesGasConstruccion().iterator();
+			while(itTanqGas.hasNext()){
+				TanqueGas tanqGasAct = itTanqGas.next();
+				tanqGasAct.construirDia();
+				if(tanqGasAct.getDiasDeConstruccionActual() == tanqGasAct.getDiasDeConstruccionTotal()){
+					yacimientoSimular.getTanquesGasConstruccion().add(tanqGasAct);
+					itTanqAgua.remove();
+				}
+			}
+			equipoIngenieria.getCriterioConstruccionTanques().construirTanquesNuevos(this);
+			
+			
 		
 		}
 		

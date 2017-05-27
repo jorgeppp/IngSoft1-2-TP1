@@ -1,11 +1,20 @@
 package simulacion;
 public class Reservorio {
 
-	private double volumenTotal;//es el volumen antes de iniciarse su explotaci�n
-	private double volumenDisponible;
+	private double volumenTotal;//es el volumen antes de iniciarse su explotación
 	private double porcPetroleo;
 	private double porcGas;
 	private double porcAgua;
+	
+	private double volumenDisponible = volumenTotal ;
+
+	
+	public Reservorio(double volumenTotal, double porcPetroleo, double porcGas, double porcAgua) {
+		this.volumenTotal = volumenTotal;
+		this.porcPetroleo = porcPetroleo;
+		this.porcGas = porcGas;
+		this.porcAgua = porcAgua;
+	}
 	
 	public double getVolumenTotal() {
 		return volumenTotal;
@@ -74,6 +83,7 @@ public class Reservorio {
 	public void extraerProducto(double volProductoExtraid){
 		volumenDisponible -= volProductoExtraid;
 	}
+	
 	
 	
 

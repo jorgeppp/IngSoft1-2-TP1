@@ -1,4 +1,5 @@
 package simulacion;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import plantaseparadoras.PlantaSeparadora;
@@ -7,15 +8,25 @@ import tanques.*;
 public class Yacimiento {
 	//datos yacimiento
 
-	private int cantPozosActual;
+	private int cantPozosActual = 0; ////pozos construidos 
+	private int cantPozosConstruccion=0; //pozos construidos o en construccion
+
+	private Reservorio reservorio;
 	private List<Parcela> parcelas;
 	private List<PlantaSeparadora> plantasSeparadoras;
-	private List<PlantaSeparadora> plantasSeparadorasConstruccion;
-	private List<TanqueAgua> tanquesAguaConstruccion;
-	private List<TanqueGas> tanquesGasConstruccion;
-	private Reservorio reservorio;
 	private List<TanqueAgua> tanquesAgua;
-	private List<TanqueGas> tanquesGas;
+	private List<TanqueGas> tanquesGas;	
+	private List<PlantaSeparadora> plantasSeparadorasConstruccion = new ArrayList<PlantaSeparadora>();
+	private List<TanqueAgua> tanquesAguaConstruccion = new ArrayList<TanqueAgua>();
+	private List<TanqueGas> tanquesGasConstruccion = new ArrayList<TanqueGas>();
+
+	public void incrementarCantPozosConstruidos() {
+		cantPozosConstruccion++;
+	}
+	
+	public int getCantPozosConstruccion() {
+		return cantPozosConstruccion;
+	}
 	
 	private void formula3(double volDispYac,double volTotYac,double volReinyectado, Parcela parc ) {
 		double nuevaPresion = ((volDispYac + volReinyectado )/volDispYac) * parc.getPozo().getPresionActual();
@@ -143,6 +154,10 @@ public class Yacimiento {
 	
 	public int getCantPozosActual() {
 		return cantPozosActual;
+	}
+	
+	public void incrementarCantPozosConstuidos(){
+		cantPozosActual++;
 	}
 
 	public List<Parcela> getParcelas() {

@@ -2,9 +2,14 @@ package tanques;
 
 public class TanqueAgua extends Tanque {
 
-	public TanqueAgua() {
-		// TODO Auto-generated constructor stub
+	public TanqueAgua(String model, int diasDeConstruccionTotal, double costoConstruccion, double volumenTotal) {
+		super(model, diasDeConstruccionTotal, costoConstruccion, volumenTotal);
+		
 	}
+
+
+
+
 	
 
 }

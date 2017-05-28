@@ -20,9 +20,9 @@ $(document).ready(function () {
 		$("#tablaRigs").append(	
     	'<tr><td class="textRight">Rig:</td>' 
 		+'<td class="textRight"> <label for="pexcava">Poder excavaci&oacute;n d&iacute;a</label> </td> <td class="textLeft"> <input size="1" type="text" class="pExcavaRig" id="pexcava" /></td>'
-		+'<td class="textRight"> <label for="cAlquilerDia">Costo alquiler d&iacute;a</label> </td> <td class="textLeft"> <input size="1" type="text" id="cAlquilerDia" /></td>'
-		+'<td class="textRight"> <label for="minDiasPag">M&iacute;nima cantidad dias pagar</label> </td> <td class="textLeft"> <input size="1" type="text" id="minDiasPag" /></td>'
-		+'<td class="textRight"> <label for="consumCombDia">Consumo combustible d&iacute;a</label> </td> <td class="textLeft"> <input size="1" type="text" id="consumCombDia" /></td>'
+		+'<td class="textRight"> <label for="cAlquilerDia">Costo alquiler d&iacute;a</label> </td> <td class="textLeft"> <input size="1" type="text" id="cAlquilerDia" class="cAlquilerRig"/></td>'
+		+'<td class="textRight"> <label for="minDiasPag">M&iacute;nima cantidad dias pagar</label> </td> <td class="textLeft"> <input size="1" type="text" id="minDiasPag" class="minDiasRig"/></td>'
+		+'<td class="textRight"> <label for="consumCombDia">Consumo combustible d&iacute;a</label> </td> <td class="textLeft"> <input size="1" type="text" id="consumCombDia" class="consumRig"/></td>'
 		+'<td class="textRight"> </td>'
 	+'</tr>');
     });
@@ -123,7 +123,7 @@ $(document).ready(function () {
 	        var ClassdiasConstPlantDat = $(".ClassdiasConstPlant")
 	        var ClasscostoConstPlantDat = $(".ClasscostoConstPlant")
 	        var ClasscantPlantDat = $(".ClasscantPlant")
-	        var ClasspoderProcesResultDat = $(".ClasspoderProcesResult")
+	        var ClasspoderProcesDat = $(".ClasspoderProces")
  
 	        var cantPlantas = ClassmodelPlantDat.length;
 	        for(var ind =0; ind < cantPlantas;ind++){
@@ -158,19 +158,48 @@ $(document).ready(function () {
 	        	ClasstipoTanqResult[ind] = ClasstipoTanqDat[ind].value;
 	        }
 	        
+	        var constrPlant = $("#constrPlant").val();
+	        var periodoPlant = $("#periodoPlant").val();
+	        
+	        var constrTanq =  $("#constrTanq").val();
+	        var periodoTanq = $("#periodoTanq").val();
+	        
+	        var constrPozos = $("#constrPozos").val();
+	        var periodoPozo = $("#periodoPozo").val();
+	        
+	        
+	        var elecParc = $("#elecParc").val();
+	        var eleRig = $("#eleRig").val();
+	        
+	        var extrPozo = $("#extrPozo").val();
+	        
+	        var eleFinali = $("#eleFinali").val();
+	        
+	        var eleVentGas = $("#eleVentGas").val();
+	        var periodoGas = $("#periodoGas").val();
+	        
+	        var critReiny = $("#critReiny").val();
+	        
+	        
+	        
+	        
 	        
 	        $.ajax({
 	            type: 'POST',
 	            url: 'home/Simular',
 	//     dataType: 'json',
-	            data : {alpha1: alpha1, alpha2: alpha2, cantPozos: cantPozos, cantMaxRigs: cantMaxRigs, volMaxReiny: volMaxReiny, presCrit: presCrit,diasMaxSim : diasMaxSim, pExcavaRigResult : pExcavaRigResult,cAlquilerRigResult : cAlquilerRigResult, minDiasRigResult : minDiasRigResult, consumRigResult : consumRigResult,
+	            data : {alpha1: alpha1, alpha2: alpha2, cantPozos: cantPozos, cantMaxRigs: cantMaxRigs, volMaxReiny: volMaxReiny, presCrit: presCrit, dilCrit:dilCrit,diasMaxSim : diasMaxSim, pExcavaRigResult : pExcavaRigResult,cAlquilerRigResult : cAlquilerRigResult, minDiasRigResult : minDiasRigResult, consumRigResult : consumRigResult,
 	            	ClassmodelPlantResult:ClassmodelPlantResult,ClassdiasConstPlantResult:ClassdiasConstPlantResult,ClasscostoConstPlantResult:ClasscostoConstPlantResult,ClasscantPlantResult:ClasscantPlantResult,ClasspoderProcesResult:ClasspoderProcesResult,
 	            	ClassmodelTanqResult: ClassmodelTanqResult,ClassdiasConstTanqResult :ClassdiasConstTanqResult,ClasscostoConstTanqResult:ClasscostoConstTanqResult,ClassvolTotResult:ClassvolTotResult,ClasscantTanqResult:ClasscantTanqResult,ClasstipoTanqResult:ClasstipoTanqResult,
-	            	pPetr:pPetr,pGas:pGas,pAgua:pAgua,pcomb:pcomb},
+	            	pPetr:pPetr,pGas:pGas,pAgua:pAgua,pcomb:pcomb,
+	            	constrPlant:constrPlant,periodoPlant:periodoPlant,constrTanq:constrTanq,periodoTanq:periodoTanq,
+	            	constrPozos:constrPozos,periodoPozo:periodoPozo,elecParc:elecParc,eleRig:eleRig,extrPozo:extrPozo,
+	            	eleFinali:eleFinali,eleVentGas:eleVentGas,periodoGas:periodoGas,critReiny:critReiny
+	            	},
 	            async: true,
 	            success: function (response) {
 	                console.log(response);
-	                alert(response.numResp)
+	                alert("La ganancia total resultante fue de " + response.numResp);
 	            	function download(filename, text) {
 	            		  var element = document.createElement('a');
 	            		  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));

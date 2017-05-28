@@ -1,8 +1,8 @@
 package simulacion;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import controller.ResponseDto;
 import plantaseparadoras.PlantaSeparadora;
 import plantaseparadoras.PlantasFactory;
 import tanques.*;
@@ -23,13 +23,34 @@ public class Simulador {
 	private EstadoFinancieroYacimiento estadoFinanciero;
 	private EquipoIngenieria equipoIngenieria;
 	
-	private static PlantasFactory plantasFactory;
-	private static TanquesFactory tanquesFactory;
-	private static List<Rig> listaRigsDisponibles;
+	private PlantasFactory plantasFactory;
+	private TanquesFactory tanquesFactory;
+	private List<Rig> listaRigsDisponibles;
 	
 	private int dia = 0;
 	private String loggeo = "";
 
+	public Simulador(double alpha1, double alpha2, int cantPozosARealizar, int cantMaxRIGSSimultaneo,
+			double volMaxReinyectarDia, double presionCritica, int dilucionCritica, int diasMaximoSimulacion,
+			Yacimiento yacimientoSimular, EstadoFinancieroYacimiento estadoFinanciero,
+			EquipoIngenieria equipoIngenieria, PlantasFactory plantasFactory, TanquesFactory tanquesFactory,
+			List<Rig> listaRigsDisponibles) {
+		super();
+		this.alpha1 = alpha1;
+		this.alpha2 = alpha2;
+		this.cantPozosARealizar = cantPozosARealizar;
+		this.cantMaxRIGSSimultaneo = cantMaxRIGSSimultaneo;
+		this.volMaxReinyectarDia = volMaxReinyectarDia;
+		this.presionCritica = presionCritica;
+		this.dilucionCritica = dilucionCritica;
+		this.diasMaximoSimulacion = diasMaximoSimulacion;
+		this.yacimientoSimular = yacimientoSimular;
+		this.estadoFinanciero = estadoFinanciero;
+		this.equipoIngenieria = equipoIngenieria;
+		this.plantasFactory = plantasFactory;
+		this.tanquesFactory = tanquesFactory;
+		this.listaRigsDisponibles = listaRigsDisponibles;
+	}
 	
 	public PlantasFactory getPlantasFactory() {
 		return plantasFactory;
@@ -76,6 +97,10 @@ public class Simulador {
 	public int getDia() {
 		return dia;
 	}
+	
+	public void loggear(String log) {
+		loggeo += log + "\r\n";
+	}
 
 	private double formula1(double alpha1,double alpha2, double presionPozoActual,int numPozosActual ) {
 		double num = presionPozoActual/numPozosActual;
@@ -90,7 +115,6 @@ public class Simulador {
 	 */
 	private void extraerPetroleoDia() {
 		double volExtrTot = 0;
-
 		for(Parcela parcAct : yacimientoSimular.getParcelas()){
 			//se extrae producto del pozo, en el caso de que este terminado y lo decida el equipo ingenieria
 			if(parcAct.getPozo().seTerminoConstruccion() && parcAct.isValvulaExtraer() ){	
@@ -114,70 +138,112 @@ public class Simulador {
 				}
 			}
 		}
-		
-		double volGasExtraido = volExtrTot * yacimientoSimular.getReservorio().getPorcGas()/100;
-		double volAguaExtraido = volExtrTot * yacimientoSimular.getReservorio().getPorcAgua()/100;
-		double volPetroleoExtraido = volExtrTot - volGasExtraido - volAguaExtraido;
-		
-		double volGasExtraidoRestante = volGasExtraido;
-		for(Tanque tanq:  yacimientoSimular.getTanquesGas()){
-			double volDispTanq = (tanq.getVolumenTotal() - tanq.getVolumenOcupadoActual());
-			if(volGasExtraidoRestante > volDispTanq){
-				volGasExtraidoRestante -= volDispTanq;
-				tanq.llenar(volDispTanq);
-			}else{
-				tanq.llenar(volGasExtraidoRestante);
-				volGasExtraidoRestante = 0;
-				break;
+		if(volExtrTot !=0){//si se extrajo algo de producto
+			System.out.println("volextrPlantas " + volExtrTot);
+			double volGasExtraido = volExtrTot * yacimientoSimular.getReservorio().getPorcGas()/100;
+			double volAguaExtraido = volExtrTot * yacimientoSimular.getReservorio().getPorcAgua()/100;
+			double volPetroleoExtraido = volExtrTot - volGasExtraido - volAguaExtraido;
+
+			double volTanqGasDispTot =0;
+			for(Tanque tanq:  yacimientoSimular.getTanquesGas()){
+				double volDispTanq = (tanq.getVolumenTotal() - tanq.getVolumenOcupadoActual());
+				volTanqGasDispTot += volDispTanq;
+			}	
+			boolean tanquesGasDisp = volTanqGasDispTot>=volGasExtraido;	
+			
+			double volTanqAguaDispTot =0;
+			for(Tanque tanq:  yacimientoSimular.getTanquesAgua()){
+				double volDispTanq = (tanq.getVolumenTotal() - tanq.getVolumenOcupadoActual());
+				volTanqAguaDispTot += volDispTanq;
+			}	
+			boolean tanquesAguaDisp = volTanqAguaDispTot>=volAguaExtraido;
+			
+			if(tanquesGasDisp && tanquesAguaDisp ){//extraigo producto y lleno los tanques			
+				loggeo +="Volumen de producto extra韉o: " + volExtrTot +"\r\n";
+				System.out.println("Volumen de producto extra韉o: " +volExtrTot );
+				loggeo +="Volumen de gas extra铆do: " + volGasExtraido +"\r\n";
+				System.out.println("Volumen de gas extra韉o: " +volGasExtraido );		
+				loggeo +="Volumen de agua extra韉o: " + volAguaExtraido +"\r\n";
+				System.out.println("Volumen de agua extra韉o: " +volAguaExtraido );		
+				loggeo +="Volumen de petr髄eo extra韉o: " + volPetroleoExtraido +"\r\n";
+				System.out.println("Volumen de petr髄eo extra韉o: " +volPetroleoExtraido );
+				
+				double volGasExtraidoRestante = volGasExtraido;
+				for(Tanque tanq:  yacimientoSimular.getTanquesGas()){
+					double volDispTanq = (tanq.getVolumenTotal() - tanq.getVolumenOcupadoActual());
+					if(volGasExtraidoRestante > volDispTanq){
+						volGasExtraidoRestante -= volDispTanq;
+						tanq.llenar(volDispTanq);
+					}else{
+						tanq.llenar(volGasExtraidoRestante);
+						volGasExtraidoRestante = 0;
+						System.out.println("bien gas");
+						break;
+					}
+				}
+				double volAguaExtraidoRestante = volAguaExtraido;
+				for(Tanque tanq:  yacimientoSimular.getTanquesAgua()){
+					double volDispTanq = (tanq.getVolumenTotal() - tanq.getVolumenOcupadoActual());
+					if(volAguaExtraidoRestante > volDispTanq){
+						volAguaExtraidoRestante -= volDispTanq;
+						tanq.llenar(volDispTanq);
+					}else{
+						tanq.llenar(volAguaExtraidoRestante);
+						volAguaExtraidoRestante = 0;
+						System.out.println("bienn agua");
+						break;
+					}		
+				}
+				EstadoFinancieroYacimiento.incrementarGanancia(volPetroleoExtraido *EstadoFinancieroYacimiento.getPrecioVentaPetroleo() );
+				//actualizo los valores del reservorio del yacimiento
+				yacimientoSimular.getReservorio().extraerProducto(volExtrTot);
+			}else{//en caso contrario todo el producto vuelve y no se llenan los tanques
+				loggeo +="Volumen de producto extra铆do : 0 \r\n";
+				System.out.println("Volumen de producto extra铆do : 0");
 			}
-		}
-		double volAguaExtraidoRestante = volAguaExtraido;
-		for(Tanque tanq:  yacimientoSimular.getTanquesAgua()){
-			double volDispTanq = (tanq.getVolumenTotal() - tanq.getVolumenOcupadoActual());
-			if(volAguaExtraidoRestante > volDispTanq){
-				volAguaExtraidoRestante -= volDispTanq;
-				tanq.llenar(volDispTanq);
-			}else{
-				tanq.llenar(volAguaExtraidoRestante);
-				volAguaExtraidoRestante = 0;
-				break;
-			}		
-		}
-		
-		//actualizo los valores del reservorio del yacimiento
-		if(volAguaExtraidoRestante ==0  && volGasExtraidoRestante==0 ){
-			yacimientoSimular.getReservorio().extraerProducto(volExtrTot);
+			//se actualizan los valores de las presiones
+			for(Parcela parcel : yacimientoSimular.getParcelas()){
+				System.out.println(parcel);
+				yacimientoSimular.formula2(yacimientoSimular.getReservorio().getVolumenDisponible(),yacimientoSimular.getReservorio().getVolumenTotal(), parcel.getPozo().getPresionActual(),yacimientoSimular.getCantPozosActual(), parcel );
+				System.out.println(parcel);
+			}
 		}else{
-			double volAguaExtraidoFinal = volAguaExtraido -volAguaExtraidoRestante;
-			double volGasExtraidoFinal = volGasExtraido - volGasExtraidoRestante;
-			yacimientoSimular.getReservorio().extraerAgua(volAguaExtraidoFinal);
-			yacimientoSimular.getReservorio().extraerGas(volGasExtraidoFinal);
-		}
-		
-		//se actualizan los valores de las presiones
-		for(Parcela parcel : yacimientoSimular.getParcelas()){
-			yacimientoSimular.formula2(yacimientoSimular.getReservorio().getVolumenDisponible(),yacimientoSimular.getReservorio().getVolumenTotal(), parcel.getPozo().getPresionActual(),yacimientoSimular.getCantPozosActual(), parcel );
+			loggeo +="Volumen de producto extra韉o : 0 \r\n";
+			System.out.println("Volumen de producto extra韉o : 0");
 		}
 		
 	}
 	
 
 
-	public void execute() {
-		loggeo +="Inicia Simulaci贸n\r\n";
-		System.out.println("Inicia Simulaci贸n");
+	public ResponseDto execute() {
+		EstadoFinancieroYacimiento.setGananciaTotal(0);
+		System.out.println("ganancia inicial " + EstadoFinancieroYacimiento.getGananciaTotal());
+		loggeo +="Inicia Simulaci髇\r\n";
+		System.out.println("Inicia Simulaci髇");
 		while(true){
-			
+			dia++;
 			if(equipoIngenieria.getCriterioFinalizacion().hayQueFinalizarSimulacion(this)){
-				loggeo += "Fin Simulaci贸n\r\n";
-				System.out.println("Fin Simulaci贸n");
-				return;
+				System.out.println("Ganancia total " + EstadoFinancieroYacimiento.getGananciaTotal() );
+				loggear("Ganancia total " + EstadoFinancieroYacimiento.getGananciaTotal());
+				loggeo += "Fin Simulaci髇\r\n";
+				System.out.println("Fin Simulaci髇");
+				
+				return new ResponseDto(loggeo, EstadoFinancieroYacimiento.getGananciaTotal());
 			}
+			
+			loggeo +="D韆 " +dia + "\r\n";
+			System.out.println("D韆 " +dia );
+			
 			//las plantas separadoras vuelven a tener su capacidad original
 			for(PlantaSeparadora plantSep : yacimientoSimular.getPlantasSeparadoras()){
 				plantSep.resetearPoderProcesamiento();
 			}
 			
+			equipoIngenieria.getCriterioExtraccionPozos().abrirValbulas(this);
+			
+			System.out.println(yacimientoSimular.getParcelas());  
+						
 			if(!equipoIngenieria.getCriterioReinyeccion().hayQueReinyectar(this)){
 				extraerPetroleoDia();
 			}
@@ -186,13 +252,21 @@ public class Simulador {
 			
 			//costruir pozos
 			for(Parcela parc : yacimientoSimular.getParcelas()){
-				if(parc.isSeConstruyePozo()){
-					if(parc.getPozo().cabarDia()){
+				Pozo pozoParc = parc.getPozo();
+				if(parc.isSeConstruyePozo() && !pozoParc.seTerminoConstruccion()){
+					if(pozoParc.cabarDia(parc.getTipoTerreno())){//se termino de construir un pozo
 						yacimientoSimular.incrementarCantPozosConstuidos();
+						Rig rigDisp = pozoParc.getRigCabando();
+						listaRigsDisponibles.add(rigDisp);
+						pozoParc.setRigCabando(null);
+						loggeo +="Se termino de construir un pozo en la parcela " +parc.getId() +  "\r\n";
+						System.out.println("Se termino de construir un pozo en la parcela " +parc.getId() +  "\r\n");
 					}
 				}
-			}		
+			}
+			
 			equipoIngenieria.getCriterioConstruccionPozos().construirPozosNuevos(this);
+			System.out.println(listaRigsDisponibles);
 			
 			//construir plantasSeparadoras
 			Iterator<PlantaSeparadora> itPlant = yacimientoSimular.getPlantasSeparadorasConstruccion().iterator();
@@ -200,12 +274,19 @@ public class Simulador {
 				PlantaSeparadora plantAct = itPlant.next();
 				plantAct.construirDia();
 				if(plantAct.getDiasDeConstruccionActual() == plantAct.getDiasDeConstruccionTotal()){
+					System.out.println("Se termino de construir una planta separadora");
+					loggeo += "Se termino de construir una planta separadora";
+					System.out.println(yacimientoSimular.getPlantasSeparadorasConstruccion());
+					System.out.println(yacimientoSimular.getPlantasSeparadoras());
 					yacimientoSimular.getPlantasSeparadoras().add(plantAct);
 					itPlant.remove();
+					System.out.println("Se termino de construir una planta separadora");
+					loggeo += "Se termino de construir una planta separadora\r\n";
+					System.out.println(yacimientoSimular.getPlantasSeparadorasConstruccion());
+					System.out.println(yacimientoSimular.getPlantasSeparadoras());
 				}
 			}
 			equipoIngenieria.getCriterioConstruccionPlantas().construirPlantasNuevas(this);
-			
 			
 			//construir Tanques	
 			Iterator<TanqueAgua> itTanqAgua = yacimientoSimular.getTanquesAguaConstruccion().iterator();
@@ -213,8 +294,14 @@ public class Simulador {
 				TanqueAgua tanqAguaAct = itTanqAgua.next();
 				tanqAguaAct.construirDia();
 				if(tanqAguaAct.getDiasDeConstruccionActual() == tanqAguaAct.getDiasDeConstruccionTotal()){
-					yacimientoSimular.getTanquesAguaConstruccion().add(tanqAguaAct);
+					System.out.println(yacimientoSimular.getTanquesAguaConstruccion());
+					System.out.println(yacimientoSimular.getTanquesAgua());
+					yacimientoSimular.getTanquesAgua().add(tanqAguaAct);
 					itTanqAgua.remove();
+					System.out.println("Se termino de construir un tanque de agua");
+					loggeo += "Se termino de construir un tanque de agua\r\n";
+					System.out.println(yacimientoSimular.getTanquesAguaConstruccion());
+					System.out.println(yacimientoSimular.getTanquesAgua());
 				}
 			}	
 			Iterator<TanqueGas> itTanqGas = yacimientoSimular.getTanquesGasConstruccion().iterator();
@@ -222,14 +309,17 @@ public class Simulador {
 				TanqueGas tanqGasAct = itTanqGas.next();
 				tanqGasAct.construirDia();
 				if(tanqGasAct.getDiasDeConstruccionActual() == tanqGasAct.getDiasDeConstruccionTotal()){
-					yacimientoSimular.getTanquesGasConstruccion().add(tanqGasAct);
-					itTanqAgua.remove();
+					System.out.println(yacimientoSimular.getTanquesGasConstruccion());
+					System.out.println(yacimientoSimular.getTanquesGas());
+					yacimientoSimular.getTanquesGas().add(tanqGasAct);
+					itTanqGas.remove();				
+					System.out.println("Se termino de construir un tanque de gas");
+					loggeo += "Se termino de construir un tanque de gas\r\n";
+					System.out.println(yacimientoSimular.getTanquesGasConstruccion());
+					System.out.println(yacimientoSimular.getTanquesGas());
 				}
 			}
 			equipoIngenieria.getCriterioConstruccionTanques().construirTanquesNuevos(this);
-			
-			
-		
 		}
 		
 	}

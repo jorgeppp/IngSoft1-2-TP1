@@ -2,6 +2,13 @@ package simulacion;
 
 public abstract class Construible {
 
+	@Override
+	public String toString() {
+		return "model=" + model + ", diasDeConstruccionTotal=" + diasDeConstruccionTotal
+				+ ", costoConstruccion=" + costoConstruccion + ", diasDeConstruccionActual=" + diasDeConstruccionActual
+				;
+	}
+
 	private String model;
 	private int diasDeConstruccionTotal;
 	private double costoConstruccion;

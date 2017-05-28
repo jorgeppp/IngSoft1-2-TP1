@@ -2,6 +2,8 @@ package controller;
 
 public class ResponseDto {
 	
+
+
 	String stringResp;
 	double numResp;
 	
@@ -9,6 +11,9 @@ public class ResponseDto {
 		return stringResp;
 	}
 	
+	public void setStringResp(String stringResp) {
+		this.stringResp = stringResp;
+	}
 	
 	public double getNumResp() {
 		return numResp;

@@ -8,9 +8,11 @@ public class EleccionParcelaTerreno extends CriteriosEleccionParcela {
 	public class ComparadorParcela implements Comparator<Parcela>{
 		public int compare(Parcela p1, Parcela p2){
 			if(p1.getTipoTerreno().ordinal() < p2.getTipoTerreno().ordinal()){
-				return 1;
-			}else{
+				return -1;
+			}else if(p1.getTipoTerreno().ordinal() == p2.getTipoTerreno().ordinal()) {
 				return 0;
+			}else{
+				return 1;
 			}
 		}	
 	}
@@ -18,7 +20,11 @@ public class EleccionParcelaTerreno extends CriteriosEleccionParcela {
 	@Override
 	public Parcela dameParcela(Simulador sim){
 		if(!seOrdeno){
+			System.out.println("parcelas antes de ordenar " + sim.getYacimientoSimular().getParcelas());
+
 			Collections.sort(sim.getYacimientoSimular().getParcelas(), new ComparadorParcela());
+			System.out.println("parcelas DESPUES de ordenar " + sim.getYacimientoSimular().getParcelas());
+
 			seOrdeno =true;
 		}
 		for(Parcela par : sim.getYacimientoSimular().getParcelas()){

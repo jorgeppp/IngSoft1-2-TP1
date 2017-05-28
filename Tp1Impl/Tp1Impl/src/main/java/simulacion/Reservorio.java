@@ -6,7 +6,7 @@ public class Reservorio {
 	private double porcGas;
 	private double porcAgua;
 	
-	private double volumenDisponible = volumenTotal ;
+	private double volumenDisponible ; //es el volumen actual
 
 	
 	public Reservorio(double volumenTotal, double porcPetroleo, double porcGas, double porcAgua) {
@@ -14,6 +14,7 @@ public class Reservorio {
 		this.porcPetroleo = porcPetroleo;
 		this.porcGas = porcGas;
 		this.porcAgua = porcAgua;
+		volumenDisponible = volumenTotal;
 	}
 	
 	public double getVolumenTotal() {
@@ -57,28 +58,37 @@ public class Reservorio {
 
 	}
 	
-	/**
-	 * Calcula los nuevos porcentages del Recervorio luego de una extraccion de agua
-	 * @param volAguaExtraid
-	 */
-	public void extraerAgua(double volAguaExtraid){
-		porcPetroleo = porcPetroleo * volumenDisponible/(volumenDisponible - volAguaExtraid );
-		porcGas = porcGas * volumenDisponible/(volumenDisponible - volAguaExtraid );
-		porcAgua = (porcAgua * volumenDisponible - 100*volAguaExtraid)/(volumenDisponible - volAguaExtraid ) ;
-		volumenDisponible -= volAguaExtraid;
-
-	}
-	
-	 /** Calcula los nuevos porcentages del Recervorio luego de una extraccion de gas
-	 * @param volGasExtraid
-	 */
-	public void extraerGas(double volGasExtraid){
-		porcPetroleo = porcPetroleo * volumenDisponible/(volumenDisponible -volGasExtraid );
-		porcAgua = porcAgua * volumenDisponible/(volumenDisponible - volGasExtraid );
-		porcGas = (porcGas * volumenDisponible - 100*volGasExtraid)/(volumenDisponible +volGasExtraid ) ;
-		volumenDisponible -= volGasExtraid;
-
-	}
+//	/**
+//	 * Calcula los nuevos porcentages del Recervorio luego de una extraccion de agua
+//	 * @param volAguaExtraid
+//	 */
+//	public void extraerAgua(double volAguaExtraid){
+//		porcPetroleo = porcPetroleo * volumenDisponible/(volumenDisponible - volAguaExtraid );
+//		porcGas = porcGas * volumenDisponible/(volumenDisponible - volAguaExtraid );
+//		porcAgua = (porcAgua * volumenDisponible - 100*volAguaExtraid)/(volumenDisponible - volAguaExtraid ) ;
+//		volumenDisponible -= volAguaExtraid;
+//
+//	}
+//	
+//	 /** Calcula los nuevos porcentages del Recervorio luego de una extraccion de gas
+//	 * @param volGasExtraid
+//	 */
+//	public void extraerGas(double volGasExtraid){
+//		porcPetroleo = porcPetroleo * volumenDisponible/(volumenDisponible -volGasExtraid );
+//		porcAgua = porcAgua * volumenDisponible/(volumenDisponible - volGasExtraid );
+//		porcGas = (porcGas * volumenDisponible - 100*volGasExtraid)/(volumenDisponible -volGasExtraid ) ;
+//		volumenDisponible -= volGasExtraid;
+//	}
+//	
+//	 /** Calcula los nuevos porcentages del Recervorio luego de una extraccion de petroleo
+//	 * @param volPetrExtraid
+//	 */
+//	public void extraerPetroleo(double volPetrExtraid){
+//		porcPetroleo = (porcPetroleo * volumenDisponible - 100*volPetrExtraid)/(volumenDisponible -volPetrExtraid );
+//		porcAgua = porcAgua * volumenDisponible/(volumenDisponible - volPetrExtraid );
+//		porcGas = porcGas * volumenDisponible/(volumenDisponible - volPetrExtraid );
+//		
+//	}
 	
 	public void extraerProducto(double volProductoExtraid){
 		volumenDisponible -= volProductoExtraid;

@@ -5,15 +5,21 @@ import java.util.List;
 import plantaseparadoras.PlantaSeparadora;
 
 public class Parcela {
-	
-	private static int count = 0;
+
+	private static int count = 1;
 	private int id;
+
+
 	private TipoDeTerreno tipoTerreno;
 	private Pozo pozo;
 	private List<PlantaSeparadora> plantasSeparadorasParcela = new ArrayList<PlantaSeparadora>();
-	private boolean seConstruyePozo = false;
+	private boolean seConstruyePozo = false; //se emepezo a construir un pozo o se termino de construir uno
 	private boolean valvulaExtraer = true; //en caso de estar en true se extrae ese dia
 	
+	
+	public int getId() {
+		return id;
+	}
 	
 	public void setValvulaExtraer(boolean valvulaExtraer) {
 		this.valvulaExtraer = valvulaExtraer;
@@ -54,7 +60,12 @@ public class Parcela {
 		plantasSeparadorasParcela.add(plantSep);
 	}
 	
-
+	@Override
+	public String toString() {
+		return "Parcela (id=" + id + ", tipoTerreno=" + tipoTerreno + ", pozo=" + pozo + ", plantasSeparadorasParcela="
+				+ plantasSeparadorasParcela + ", seConstruyePozo=" + seConstruyePozo + ", valvulaExtraer="
+				+ valvulaExtraer + ")";
+	}
 
 	
 	

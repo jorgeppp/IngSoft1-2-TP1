@@ -2,19 +2,22 @@ package plantaseparadoras;
 import java.util.List;
 import java.util.Random;
 
+
 public class PlantasFactory {
 	
 	private List<PlantaSeparadora> listPlant;
 	
 	public PlantaSeparadora obtenerPlantaRandom(){
+
 		Random aleat =  new Random();
-		return listPlant.get(aleat.nextInt(listPlant.size()));
+		PlantaSeparadora plantRes =  listPlant.get(aleat.nextInt(listPlant.size()));
+		System.out.println("Construccion de planta en la factory " + plantRes);
+		return plantRes;
+
 	}
-	public PlantaSeparadora obtenerPlantaModelo(String modelo){
-		for(PlantaSeparadora plant : listPlant){
-			if(plant.getModel() == modelo) return plant;
-		}
-		System.err.println("No existen plantas con ese modelo");
-		throw new IllegalArgumentException("No existen plantas con ese modelo");
+
+	public PlantasFactory(List<PlantaSeparadora> listPlant) {
+		super();
+		this.listPlant = listPlant;
 	}
 }

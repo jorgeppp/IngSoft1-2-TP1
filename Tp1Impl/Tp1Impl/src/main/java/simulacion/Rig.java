@@ -2,6 +2,12 @@ package simulacion;
 
 public class Rig {
 
+	@Override
+	public String toString() {
+		return "Rig (poderEscavacionDia=" + poderEscavacionDia + ", costoAlquilerDia=" + costoAlquilerDia
+				+ ", minDiasPagarOblig=" + minDiasPagarOblig + ", consumCombustDia=" + consumCombustDia + ")";
+	}
+
 	private double poderEscavacionDia;
 	private double costoAlquilerDia;
 	private int minDiasPagarOblig;

@@ -1,11 +1,10 @@
 package simulacion;
-import java.util.List;
 
-import plantaseparadoras.PlantasFactory;
-import tanques.TanquesFactory;
 
 public class EstadoFinancieroYacimiento {
 	
+
+
 	private static double gananciaTotal =0;
 	
 	private static double precioVentaPetroleo;
@@ -27,8 +26,10 @@ public class EstadoFinancieroYacimiento {
 		EstadoFinancieroYacimiento.costoCombustibleRigs = costoCombustibleRigs;
 	}
 
+	public static void setGananciaTotal(double gananciaTotal) {
+		EstadoFinancieroYacimiento.gananciaTotal = gananciaTotal;
+	}
 
-	
 	public static double getPrecioVentaPetroleo() {
 		return precioVentaPetroleo;
 	}
@@ -47,11 +48,17 @@ public class EstadoFinancieroYacimiento {
 	}
 	
 	public static void incrementarGanancia(double value) {
+		System.out.println("incrementa ganancia total " + gananciaTotal +"en " + value );
 		gananciaTotal += value;
+		System.out.println("incrementa ganancia total " + gananciaTotal +"en " + value );
+
 	}
 	
 	public static void decrementarGanancia(double value) {
+		System.out.println("decrementa ganancia total " + gananciaTotal +"en " + value );
 		gananciaTotal -= value;
+		System.out.println("decrementa ganancia total " + gananciaTotal +"en " + value );
+
 	}
 	
 	

@@ -12,6 +12,23 @@ public class EquipoIngenieria {
 	private CriteriosEleccionRig criterioEleccionRig;
 	private CriteriosEleccionParcela criterioEleccionParcela;
 	
+	public EquipoIngenieria(CriteriosConstruccionPozos criterioConstruccionPozos,
+			CriteriosConstruccionPlantas criterioConstruccionPlantas,
+			CriteriosConstruccionTanques criterioConstruccionTanques, CriteriosExtraccionPozos criterioExtraccionPozos,
+			CriteriosReinyeccion criterioReinyeccion, CriteriosFinalizacion criterioFinalizacion,
+			CriteriosVentaGas criterioVentaGas, CriteriosEleccionRig criterioEleccionRig,
+			CriteriosEleccionParcela criterioEleccionParcela) {
+		super();
+		this.criterioConstruccionPozos = criterioConstruccionPozos;
+		this.criterioConstruccionPlantas = criterioConstruccionPlantas;
+		this.criterioConstruccionTanques = criterioConstruccionTanques;
+		this.criterioExtraccionPozos = criterioExtraccionPozos;
+		this.criterioReinyeccion = criterioReinyeccion;
+		this.criterioFinalizacion = criterioFinalizacion;
+		this.criterioVentaGas = criterioVentaGas;
+		this.criterioEleccionRig = criterioEleccionRig;
+		this.criterioEleccionParcela = criterioEleccionParcela;
+	}
 	
 	public CriteriosEleccionParcela getCriterioEleccionParcela() {
 		return criterioEleccionParcela;
@@ -40,8 +57,6 @@ public class EquipoIngenieria {
 	public CriteriosVentaGas getCriterioVentaGas() {
 		return criterioVentaGas;
 	}
-	public EquipoIngenieria() {
-		// TODO Auto-generated constructor stub
-	}
+
 
 }

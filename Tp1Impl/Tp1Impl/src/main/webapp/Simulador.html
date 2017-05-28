@@ -21,52 +21,52 @@
 			<div id="simularDiv">
 				<table  style="width: 100%">
 					<tr>
-						<td class="textRight"><label for="alpha1">Alpha1</label> </td> <td class="textLeft"> <input size="1" type="text" id="alpha1" /> </td>
-						<td class="textRight"><label for="alpha2">Alpha2</label> </td> <td class="textLeft"><input size="1" type="text" id="alpha2" /></td>
-						<td class="textRight"><label for="cantPozos">Cantidad pozos a realizar</label> </td> <td class="textLeft"><input size="1" type="text" id="cantPozos" /></td>
-						<td class="textRight"><label for="cantMaxRigs">Cantidad mï¿½xima rigs simultaneo</label> </td> <td class="textLeft"><input type="text" size="1" id="cantMaxRigs" /></td>
-						<td class="textRight"><label for="volMaxReiny">Volumen mï¿½ximo reinyectar dï¿½a</label> </td> <td class="textLeft"><input type="text" size="1" id="volMaxReiny" /></td>
-						<td class="textRight"><label for="presCrit">Presiï¿½n crï¿½tica</label> </td> <td class="textLeft"><input size="1" type="text" id="presCrit" /></td>
+						<td class="textRight"><label for="alpha1">Alpha1</label> </td> <td class="textLeft"> <input size="1" type="text" id="alpha1" value="1"/> </td>
+						<td class="textRight"><label for="alpha2">Alpha2</label> </td> <td class="textLeft"><input size="1" type="text" id="alpha2" value="2"/></td>
+						<td class="textRight"><label for="cantPozos">Cantidad pozos a realizar</label> </td> <td class="textLeft"><input size="1" type="text" id="cantPozos" value="15"/></td>
+						<td class="textRight"><label for="cantMaxRigs">Cantidad máxima rigs simultaneo</label> </td> <td class="textLeft"><input type="text" size="1" id="cantMaxRigs" value="5"/></td>
+						<td class="textRight"><label for="volMaxReiny">Volumen máximo reinyectar día</label> </td> <td class="textLeft"><input type="text" size="1" id="volMaxReiny" value="50"/></td>
+						<td class="textRight"><label for="presCrit">Presión crítica</label> </td> <td class="textLeft"><input size="1" type="text" id="presCrit" value="0.5"/></td>
 					</tr>
 				</table>
 				<table  style="width: 100%">
 					<tr>
-						<td class="textRight"><label for="dilCrit">Diluciï¿½n crï¿½tica</label> </td> <td class="textLeft"> <input size="1" type="text" id="dilCrit" /> </td>
-						<td class="textRight"><label for="diasMaxSim">Dias Mï¿½ximo simulaciï¿½n</label> </td> <td class="textLeft"><input size="1" type="text" id="diasMaxSim" /></td>
-						<td class="textRight"><label for="pPetr">Precio petrï¿½leo </label> </td> <td class="textLeft"> <input size="1" type="text" id="pPetr" /> </td>
-						<td class="textRight"><label for="pGas">Precio gas</label> </td> <td class="textLeft"><input size="1" type="text" id="pGas" /></td>
-						<td class="textRight"><label for="pAgua">Precio agua </label> </td> <td class="textLeft"> <input size="1" type="text" id="pAgua" /> </td>
-						<td class="textRight"><label for="pcomb">Precio combustible rigs</label> </td> <td class="textLeft"><input size="1" type="text" id="pcomb" /></td>
+						<td class="textRight"><label for="dilCrit">Dilución crítica</label> </td> <td class="textLeft"> <input size="1" type="text" id="dilCrit" value="10"/> </td>
+						<td class="textRight"><label for="diasMaxSim">Dias Máximo simulación</label> </td> <td class="textLeft"><input size="1" type="text" id="diasMaxSim" value="50"/></td>
+						<td class="textRight"><label for="pPetr">Precio petróleo </label> </td> <td class="textLeft"> <input size="1" type="text" id="pPetr" value="50.5"/> </td>
+						<td class="textRight"><label for="pGas">Precio gas</label> </td> <td class="textLeft"><input size="1" type="text" id="pGas" value="10.4"/></td>
+						<td class="textRight"><label for="pAgua">Precio agua </label> </td> <td class="textLeft"> <input size="1" type="text" id="pAgua" value="10.3"/> </td>
+						<td class="textRight"><label for="pcomb">Precio combustible rigs</label> </td> <td class="textLeft"><input size="1" type="text" id="pcomb" value="10.2"/></td>
 					</tr>
 				</table>
 				<table style="width: 100%" id="tablaRigs">
 					<tr>
 						<td class="textRight">Rig :</td>
-						<td class="textRight"> <label for="pexcava">Poder excavaciï¿½n dï¿½a</label> </td> <td class="textLeft"> <input size="1" type="text" id="pexcava" class="pExcavaRig"/></td>
-						<td class="textRight"> <label for="cAlquilerDia">Costo alquiler dï¿½a</label> </td> <td class="textLeft"> <input size="1" type="text" id="cAlquilerDia" class="cAlquilerRig"/></td>
-						<td class="textRight"> <label for="minDiasPag">Mï¿½nima cantidad dias pagar</label> </td> <td class="textLeft"> <input size="1" type="text" id="minDiasPag" class="minDiasRig"/></td>
-						<td class="textRight"> <label for="consumCombDia">Consumo combustible dï¿½a</label> </td> <td class="textLeft"> <input size="1" type="text" id="consumCombDia" class="consumRig"/></td>
+						<td class="textRight"> <label for="pexcava">Poder excavación día</label> </td> <td class="textLeft"> <input size="1" type="text" id="pexcava" class="pExcavaRig" value="1.2"/></td>
+						<td class="textRight"> <label for="cAlquilerDia">Costo alquiler día</label> </td> <td class="textLeft"> <input size="1" type="text" id="cAlquilerDia" class="cAlquilerRig" value="10.2"/></td>
+						<td class="textRight"> <label for="minDiasPag">Mínima cantidad dias pagar</label> </td> <td class="textLeft"> <input size="1" type="text" id="minDiasPag" class="minDiasRig" value="7"/></td>
+						<td class="textRight"> <label for="consumCombDia">Consumo combustible día</label> </td> <td class="textLeft"> <input size="1" type="text" id="consumCombDia" class="consumRig" value="2"/></td>
 						<td class="textRight"> <button class="mas" id="agregarRig">+</button></td>
 					</tr>
 				</table>
 				<table style="width: 100%" id="tablaModelosPlantas">
 					<tr>
-						<td class="textRight"> <label for="modelPlant">Modelo Planta</label> </td> <td class="textLeft"> <input size="1" type="text" id="modelPlant" class="ClassmodelPlant"/></td>
-						<td class="textRight"> <label for="diasConstPlant">D&iacute;as construcci&oacute;n</label> </td> <td class="textLeft"> <input size="1" type="text" id="diasConstPlant" class="ClassdiasConstPlant"/></td>
-						<td class="textRight"> <label for="costoConstPlant">Costo construci&oacute;n</label> </td> <td class="textLeft"> <input size="1" type="text" id="costoConstPlant" class="ClasscostoConstPlant"/></td>
-						<td class="textRight"> <label for="poderProces">Poder procesamiento d&iacute;a</label> </td> <td class="textLeft"> <input size="1" type="text" id="poderProces" class="ClasscantPlant"/></td>
-						<td class="textRight"> <label for="cantPlant">Cantidad inicial</label> </td> <td class="textLeft"> <input size="1" type="text" id="poderProces" class="ClasspoderProces"/></td>
+						<td class="textRight"> <label for="modelPlant">Modelo Planta</label> </td> <td class="textLeft"> <input size="1" type="text" id="modelPlant" class="ClassmodelPlant" value="A1"/></td>
+						<td class="textRight"> <label for="diasConstPlant">D&iacute;as construcci&oacute;n</label> </td> <td class="textLeft"> <input size="1" type="text" id="diasConstPlant" class="ClassdiasConstPlant" value="6"/></td>
+						<td class="textRight"> <label for="costoConstPlant">Costo construci&oacute;n</label> </td> <td class="textLeft"> <input size="1" type="text" id="costoConstPlant" class="ClasscostoConstPlant" value="20"/></td>
+						<td class="textRight"> <label for="poderProces">Poder procesamiento d&iacute;a</label> </td> <td class="textLeft"> <input size="1" type="text" id="poderProces" class="ClasspoderProces" value="1.4"/></td>
+						<td class="textRight"> <label for="cantPlant">Cantidad inicial</label> </td> <td class="textLeft"> <input size="1" type="text" id="cantPlant" class="ClasscantPlant" value="5"/></td>
 						<td class="textRight"> <button class="mas" id="agregarPlanta">+</button></td>
 					</tr>
 				</table>
 				<table style="width: 100%" id="tablaModelosTanques">
 				<tbody id="modelTanq">
 					<tr>
-						<td class="textRight"> <label for="modelTanq">Modelo Tanque</label> </td> <td class="textLeft"> <input size="1" type="text" id="modelPlant" class="ClassmodelTanq"/></td>
-						<td class="textRight"> <label for="diasConstTanq">D&iacute;as construcci&oacute;n</label> </td> <td class="textLeft"> <input size="1" type="text" id="diasConstTanq" class="ClassdiasConstTanq"/></td>
-						<td class="textRight"> <label for="costoConstTanq">Costo construci&oacute;n</label> </td> <td class="textLeft"> <input size="1" type="text" id="costoConstTanq" class="ClasscostoConstTanq"/></td>
-						<td class="textRight"> <label for="volTot">Volumen total</label> </td> <td class="textLeft"> <input size="1" type="text" id="poderProces" class="ClassvolTot"/></td>
-						<td class="textRight"> <label for="cantTanq">Cantidad inicial</label> </td> <td class="textLeft"> <input size="1" type="text" id="cantTanq" class="ClasscantTanq"/></td>
+						<td class="textRight"> <label for="modelTanq">Modelo Tanque</label> </td> <td class="textLeft"> <input size="1" type="text" id="modelPlant" class="ClassmodelTanq" value="B1"/></td>
+						<td class="textRight"> <label for="diasConstTanq">D&iacute;as construcci&oacute;n</label> </td> <td class="textLeft"> <input size="1" type="text" id="diasConstTanq" class="ClassdiasConstTanq" value="7"/></td>
+						<td class="textRight"> <label for="costoConstTanq">Costo construci&oacute;n</label> </td> <td class="textLeft"> <input size="1" type="text" id="costoConstTanq" class="ClasscostoConstTanq" value="40"/></td>
+						<td class="textRight"> <label for="volTot">Volumen total</label> </td> <td class="textLeft"> <input size="1" type="text" id="poderProces" class="ClassvolTot" value="80"/></td>
+						<td class="textRight"> <label for="cantTanq">Cantidad inicial</label> </td> <td class="textLeft"> <input size="1" type="text" id="cantTanq" class="ClasscantTanq" value="4"/></td>
 						<td class="textRight"> <label for="tipoTanq">Tipo tanque</label> </td> <td class="textLeft"> <select id="tipoTanq" class="ClasstipoTanq">
 								<option value="agua">Agua</option>
 								<option value="gas">Gas</option>
@@ -77,47 +77,47 @@
 				</table>
 				<table style="width: 100%">
 					<tr>
-						<td class="textRight"> <label for="constrPlant">Criterio construcciÃ³n plantas</label> </td> <td class="textLeft"> <select id="constrPlant">
+						<td class="textRight"> <label for="constrPlant">Criterio construcción plantas</label> </td> <td class="textLeft"> <select id="constrPlant">
 								<option value="periodPlant">En intervalos regulares</option>
-						</select> <input size="1" type="text" id="periodoPlant"/></td>
-						<td class="textRight"> <label for="constrTanq">Criterio construcciÃ³n tanques</label> </td> <td class="textLeft"> <select id="constrTanq">
+						</select> <input size="1" type="text" id="periodoPlant" value="5"/></td>
+						<td class="textRight"> <label for="constrTanq">Criterio construcción tanques</label> </td> <td class="textLeft"> <select id="constrTanq">
 								<option value="periodTanq">En intervalos regulares</option>
-						</select> <input size="1" type="text" id="periodoTanq"/></td>
+						</select> <input size="1" type="text" id="periodoTanq" value="4"  /></td>
 					</tr>
 					<tr>
-						<td class="textRight"> <label for="constrPozos">Criterio construcciÃ³n pozos</label> </td> <td class="textLeft"> <select id="constrPozos">
+						<td class="textRight"> <label for="constrPozos">Criterio construcción pozos</label> </td> <td class="textLeft"> <select id="constrPozos">
 								<option value="periodPozo">En intervalos regulares</option>
-								<option value="maxRigs">MÃ¡xima cantidad rigs</option>
-						</select> <input size="1" type="text" id="periodoPozo"/></td>
-						<td class="textRight"> <label for="elecParc">Criterio elecciÃ³n parcela</label> </td> <td class="textLeft"> <select id="elecParc">
+								<option value="maxRigs">Máxima cantidad rigs</option>
+						</select> <input size="1" type="text" id="periodoPozo" value="3"/></td>
+						<td class="textRight"> <label for="elecParc">Criterio elección parcela</label> </td> <td class="textLeft"> <select id="elecParc">
 								<option value="menorProfun">Menor profundidad</option>
 								<option value="terreno">Terreno</option>
 						</select> </td>
 					</tr>
 					<tr>
-						<td class="textRight"> <label for="eleRig">Criterio elecciÃ³n rig</label> </td> <td class="textLeft"> <select id="eleRig">
+						<td class="textRight"> <label for="eleRig">Criterio elección rig</label> </td> <td class="textLeft"> <select id="eleRig">
 								<option value="alAzar">Al azar</option>
-								<option value="poderExcava">Poder ExcavaciÃ³n</option>
+								<option value="poderExcava">Poder Excavación</option>
 						</select> </td>
-						<td class="textRight"> <label for="extrPozo">Criterio extracciÃ³n pozos</label> </td> <td class="textLeft"> <select id="extrPozo">
+						<td class="textRight"> <label for="extrPozo">Criterio extracción pozos</label> </td> <td class="textLeft"> <select id="extrPozo">
 								<option value="azarExtr">Azar</option>
 								<option value="todasAbiertas">Todas las valvulas abiertas</option>
 						</select> </td>
 					</tr>
 					<tr>
-						<td class="textRight"> <label for="eleFinali">Criterio finalizaciÃ³n</label> </td> <td class="textLeft"> <select id="eleFinali">
-								<option value="alAzar">Cantidad dias mÃ¡xima</option>
-								<option value="poderExcava">DiluciÃ³n crÃ­tica</option>
-						</select> <input size="1" type="text" id="periodoPozo"/></td>
+						<td class="textRight"> <label for="eleFinali">Criterio finalización</label> </td> <td class="textLeft"> <select id="eleFinali">
+								<option value="cantMax">Cantidad dias máxima</option>
+								<option value="dilCrit">Dilución crítica</option>
+						</select></td>
 						<td class="textRight"> <label for="eleVentGas">Criterio venta gas</label> </td> <td class="textLeft"> <select id="eleVentGas">
 								<option value="periodoGas">En intervalos regulares</option>
-								<option value="porcentajeGas">Porcentaje de llenado mayor</option>
-						</select> <input size="1" type="text" id="periodoGas"/></td>
+								<option value="porcentajeGas">Porcentaje de llenado mayor a</option>
+						</select> <input size="1" type="text" id="periodoGas" value="5"/></td>
 					</tr>
 					<tr>		
-						<td class="textRight"> <label for="critReiny">Criterio reinyecciÃ³n</label> </td> <td class="textLeft"> <select id="critReiny">
-								<option value="menorProfun">Agua y gas de los tanques disponible, presiÃ³n crÃ­tica</option>
-								<option value="todasAbiertas">Agua en el volumen maximo reinyectar, presiÃ³n crÃ­tica</option>
+						<td class="textRight"> <label for="critReiny">Criterio reinyección</label> </td> <td class="textLeft"> <select id="critReiny">
+								<option value="aguaYgas">Agua y gas de los tanques disponible, presión crítica</option>
+								<option value="agua">Agua en el volumen maximo reinyectar, presión crítica</option>
 						</select> </td>
 						
 						<td class="textRight"> </td>
@@ -135,7 +135,7 @@
 				<table style="width: 100%" id="reservorio">
 					<tr>
 						<td class="textRight"> <label for="volTot">Volumen total</label> </td> <td class="textLeft"> <input size="1" type="text" id="volTot" /></td>
-						<td class="textRight"> <label for="porcPetr">Porcentaje petrï¿½leo</label> </td> <td class="textLeft"> <input size="1" type="text" id="porcPetr" class="ClassporcPetr"/></td>
+						<td class="textRight"> <label for="porcPetr">Porcentaje petróleo</label> </td> <td class="textLeft"> <input size="1" type="text" id="porcPetr" class="ClassporcPetr"/></td>
 						<td class="textRight"> <label for="porcGas">Porcentaje gas</label> </td> <td class="textLeft"> <input size="1" type="text" id="porcGas" class="ClassporcGas"/></td>
 						<td class="textRight"> <label for="porcAgua">Porcentaje agua</label> </td> <td class="textLeft"> <input size="1" type="text" id="porcAgua" class="ClassporcAgua"/></td>
 					</tr>
@@ -144,7 +144,7 @@
 					<tr>
 						<td class="textRight">Parcela :</td>
 						<td class="textRight"> <label for="profundidadTotal">Profundidad total</label> </td> <td class="textLeft"> <input size="1" type="text" id="profundidadTotal" class="ClassprofundidadTotal"/></td>
-						<td class="textRight"> <label for="presionInicial">Presiï¿½n inicial</label> </td> <td class="textLeft"> <input size="1" type="text" id="presionInicial" class="ClasspresionInicial"/></td>
+						<td class="textRight"> <label for="presionInicial">Presión inicial</label> </td> <td class="textLeft"> <input size="1" type="text" id="presionInicial" class="ClasspresionInicial"/></td>
 						<td class="textRight"> <label for="tipoTerreno">Tipo terreno</label> </td> <td class="textLeft"> <select id="tipoTerreno" class="ClasstipoTerreno">
 								<option value="arcilloso">ARCILLOSO</option>
 								<option value="normal">NORMAL</option>

@@ -2,7 +2,7 @@ package tanques;
 
 import simulacion.EstadoFinancieroYacimiento;
 
-public class TanqueGas extends Tanque {
+public class TanqueGas extends Tanque implements Cloneable{
 
 	EstadoFinancieroYacimiento estadoFinancieroYacimiento;
 	/**
@@ -20,5 +20,26 @@ public class TanqueGas extends Tanque {
 		super(model, diasDeConstruccionTotal, costoConstruccion, volumenTotal);
 		estadoFinancieroYacimiento = estadFinanc;
 	}
+	
+	   @Override
+	public String toString() {
+		return "TanqueGas (getVolumenTotal()=" + getVolumenTotal() + ", getVolumenOcupadoActual()="
+				+ getVolumenOcupadoActual() + ", getModel()=" + getModel() + ", getDiasDeConstruccionActual()="
+				+ getDiasDeConstruccionActual() + ", getDiasDeConstruccionTotal()=" + getDiasDeConstruccionTotal()
+				+ ", getCostoConstruccion()=" + getCostoConstruccion() + ")";
+	}
+	
+	   public Object clone() {
+		      Object clone = null;
+		      
+		      try {
+		         clone = super.clone();
+		         
+		      } catch (CloneNotSupportedException e) {
+		         e.printStackTrace();
+		      }
+		      
+		      return clone;
+		   }
 
 }

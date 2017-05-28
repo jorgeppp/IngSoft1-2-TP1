@@ -3,34 +3,33 @@ package simulacion;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 
-import simulacion.EleccionParcelaMenorProfundidad.ComparadorParcela;
 
 public class EleccionRigPoderExcavacion extends CriteriosEleccionRig{
-	
-	private boolean seOrdeno = false;
 	
 	public class ComparadorRigs implements Comparator<Rig>{
 		public int compare(Rig r1, Rig r2){
 			if(r1.getPoderEscavacionDia() < r2.getPoderEscavacionDia()){
-				return 1;
-			}else{
+				return -1;
+			}else if(r1.getPoderEscavacionDia() == r2.getPoderEscavacionDia()){
 				return 0;
+			}else{
+				return 1;
 			}
 		}
-		
 	}
 	
 	@Override
 	public Rig alquilarRig(Simulador sim){
-		if(!seOrdeno){
-			Collections.sort(sim.getListaRigsDisponibles(), new ComparadorRigs());
-			seOrdeno =true;
-		}
+		System.out.println("alquilando riggg");
+		System.out.println("antes de oredenarr ");
+		System.out.println(sim.getListaRigsDisponibles());
+		Collections.sort(sim.getListaRigsDisponibles(), new ComparadorRigs());
+		System.out.println("luegoo " + sim.getListaRigsDisponibles());
 		
+		System.out.println(sim.getListaRigsDisponibles());
 		List<Rig> rigsDisp = sim.getListaRigsDisponibles(); 
-
+		System.out.println(rigsDisp);
 		if(!rigsDisp.isEmpty()){
 			return rigsDisp.remove(0);
 		}else{
